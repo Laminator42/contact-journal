@@ -99,7 +99,8 @@ cfg.module.rules.push({
 
       // Quasar plugins
       plugins: [
-        'Dialog'
+        'Dialog',
+        'LocalStorage'
       ]
     },
 
