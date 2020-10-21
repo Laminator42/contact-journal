@@ -24,12 +24,8 @@ import { mapGetters } from "vuex";
 
 export default {
   name: 'PageIndex',
-  data() {
-    return {
-    }
-  },
   computed: {
-    ...mapGetters('contacts', ['contacts'])
+    ...mapGetters('contacts', ['contacts']),
   },
   components: {
     'contact': require('components/Contact.vue').default

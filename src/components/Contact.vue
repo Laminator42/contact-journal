@@ -1,8 +1,10 @@
 <template>
   <q-card class="bg-primary text-white">
+
     <q-card-section class="col-12">
       <q-icon size="sm" name="watch_later"></q-icon> {{ contact.date }}
     </q-card-section>
+
     <q-card-section class="col-12">
       <q-icon size="sm" name="location_on"></q-icon> {{ contact.location }}
     </q-card-section>
@@ -10,19 +12,22 @@
       <q-card-section class="col-4">
         <q-icon size="md" name="groups"></q-icon> {{ contact.nPersons }}
       </q-card-section>
+      
       <q-card-section class="col-4">
         <q-icon size="md" name="masks"></q-icon> {{ translateBool(contact.mask) }}
       </q-card-section>
+      
       <q-card-section class="col-4">
         <q-icon size="md" name="6_ft_apart"></q-icon> {{ translateBool(contact.distance) }}
       </q-card-section>
     </div>
 
-    <q-separator dark />
-
-    <q-card-actions class="float-right">
-      <q-btn flat icon="delete" @click="promptToDelete(id)"></q-btn>
-    </q-card-actions>
+    <q-icon
+      class="absolute-right"
+      name="cancel"
+      style="font-size: 20px"
+      @click="promptToDelete(id)"
+    />
   </q-card>
 </template>
 

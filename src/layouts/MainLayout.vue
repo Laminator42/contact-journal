@@ -19,7 +19,7 @@
     </q-footer>
 
     <q-dialog v-model="showAddContact" persistent>
-      <contact-adder :id="currentId" @idIncreased="updateId"></contact-adder>
+      <contact-adder></contact-adder>
     </q-dialog>
     
   </q-layout>
@@ -33,12 +33,8 @@ export default {
   },
   data() {
     return {
-      showAddContact: false,
-      currentId: 10
+      showAddContact: false
     }
-  },
-  methods: {
-    updateId(id) { this.id = id; console.log(this.id) }
   }
 }
 </script>
