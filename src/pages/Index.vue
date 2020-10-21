@@ -3,7 +3,7 @@
     <q-page>
       <!-- col-md-4 col-sm-6  -->
       <div
-        class="q-pa-sm fit"
+        class="q-pa-sm fit row justify-center"
         v-for="(contact, contactKey) in contacts" 
         :key="contactKey"
       >

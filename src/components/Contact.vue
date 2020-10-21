@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bg-primary text-white">
+  <q-card class="bg-primary text-white" style="width: 350px">
 
     <q-card-section class="col-12">
       <q-icon size="sm" name="watch_later"></q-icon> {{ contact.date }}
@@ -25,13 +25,15 @@
     <q-icon
       class="absolute-right"
       name="cancel"
-      style="font-size: 20px"
+      style="font-size: 30px"
       @click="promptToDelete(id)"
     />
   </q-card>
 </template>
 
 <script>
+// TODO: Show verylongtext... with dots if text is too long
+
 import { mapActions } from "vuex";
 
 export default {
