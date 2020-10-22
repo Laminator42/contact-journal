@@ -1,16 +1,18 @@
 <template>
   <div>
     <q-page>
-      <!-- col-md-4 col-sm-6  -->
-      <div
-        class="q-pa-sm fit row justify-center"
-        v-for="(contact, contactKey) in contacts" 
-        :key="contactKey"
-      >
-        <contact
-          :contact="contact"
-          :id="contactKey"
-        ></contact>
+      <div class="q-pa-md">
+        <q-list bordered separator>
+          <contact
+            clickable
+            v-ripple
+            v-for="(contact, contactKey) in contacts" 
+            :key="contactKey"
+            :contact="contact"
+            :id="contactKey"
+            >
+          </contact>
+        </q-list>
       </div>
     </q-page>
 
@@ -23,12 +25,12 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: 'PageIndex',
+  name: "PageIndex",
   computed: {
-    ...mapGetters('contacts', ['contacts']),
+    ...mapGetters("contacts", ["contacts"]),
   },
   components: {
-    'contact': require('components/Contact.vue').default
-  }
-}
+    contact: require("components/Contact.vue").default,
+  },
+};
 </script>

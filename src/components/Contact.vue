@@ -1,34 +1,51 @@
 <template>
-  <q-card class="bg-primary text-white" style="width: 350px">
-
-    <q-card-section class="col-12">
-      <q-icon size="sm" name="watch_later"></q-icon> {{ contact.date }}
-    </q-card-section>
-
-    <q-card-section class="col-12">
-      <q-icon size="sm" name="location_on"></q-icon> {{ contact.location }}
-    </q-card-section>
-    <div class="row" style="width: 100%">
-      <q-card-section class="col-4">
-        <q-icon size="md" name="groups"></q-icon> {{ contact.nPersons }}
-      </q-card-section>
-      
-      <q-card-section class="col-4">
-        <q-icon size="md" name="masks"></q-icon> {{ translateBool(contact.mask) }}
-      </q-card-section>
-      
-      <q-card-section class="col-4">
-        <q-icon size="md" name="6_ft_apart"></q-icon> {{ translateBool(contact.distance) }}
-      </q-card-section>
+  <q-item clickable v-ripple class="row text-white bg-primary">
+    <div class="col-8">
+      <q-item-label>
+        <q-icon name="watch_later" class="contact-icon"></q-icon>
+        {{ contact.date }}
+      </q-item-label>
+      <q-item-label>
+        <q-icon name="location_on" class="contact-icon"></q-icon>
+        {{ contact.location }}
+      </q-item-label>
     </div>
-
-    <q-icon
-      class="absolute-right"
-      name="cancel"
-      style="font-size: 30px"
-      @click="promptToDelete(id)"
-    />
-  </q-card>
+    <div class="col-4">
+      <div class="row">
+        <div class="col-6">
+          <q-icon name="groups" class="contact-icon"></q-icon>
+          {{ contact.nPersons }}
+        </div>
+        <div class="col-6">
+          <q-icon
+            name="masks"
+            :class="[
+              'float-right',
+              'contact-icon',
+              contact.mask ? '' : 'text-primary',
+            ]"
+          ></q-icon>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <q-icon
+            name="6_ft_apart"
+            :class="[
+              'contact-icon',
+              contact.distance ? '' : 'text-primary',
+            ]"
+          ></q-icon>
+        </div>
+        <div class="col-6">
+          <q-icon
+            :name="contact.outdoor ? 'nature_people' : 'home'"
+            class="float-right contact-icon"
+          ></q-icon>
+        </div>
+      </div>
+    </div>
+  </q-item>
 </template>
 
 <script>
@@ -37,25 +54,29 @@
 import { mapActions } from "vuex";
 
 export default {
-  props: ['contact', 'id'],
+  props: ["contact", "id"],
   methods: {
-    ...mapActions('contacts', ['deleteContact']),
+    ...mapActions("contacts", ["deleteContact"]),
     promptToDelete(id) {
-      this.$q.dialog({
-        message: 'Möchten Sie wirklich diesen Kontakt löschen?',
-        cancel: true,
-        persistent: true
-      }).onOk(() => {
-        this.deleteContact(id)
-      })
+      this.$q
+        .dialog({
+          message: "Möchten Sie wirklich diesen Kontakt löschen?",
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          this.deleteContact(id);
+        });
     },
     translateBool(value) {
-      return (value ? "Ja" : "Nein")
-    }
-  }
-}
+      return value ? "Ja" : "Nein";
+    },
+  },
+};
 </script>
 
 <style>
-
+.contact-icon {
+  font-size: 1.7em;
+}
 </style>

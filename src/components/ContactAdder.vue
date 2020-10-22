@@ -63,9 +63,11 @@
       </q-input>
     </q-card-section>
 
-		<q-toggle v-model="mask" label="Wurde sich an das Maskengebot gehalten?" />
+		<q-toggle v-model="mask" label="Wurde Maske getragen?" />
 		
-		<q-toggle v-model="distance" label="Wurde sich an das Abstandsgebot gehalten?" />
+		<q-toggle v-model="distance" label="Wurde Abstands gehalten?" />
+		
+		<q-toggle v-model="outdoor" label="War die Situation an der frischen Luft?" />
 
     <q-card-section>
       <q-input filled v-model="notes" autogrow label="Notizen"></q-input>
@@ -91,6 +93,7 @@ export default {
 			nPersons: null,
 			mask: false,
 			distance: false,
+      outdoor: false,
 			notes: ""
     }
   },
@@ -105,6 +108,7 @@ export default {
 			this.nPersons = null
 			this.mask = false
 			this.distance = false
+      this.outdoor = false,
 			this.notes = ""
 		},
 		submit() {
@@ -116,7 +120,8 @@ export default {
 					'location': this.location,
 					'nPersons': this.nPersons,
 					'mask': this.mask,
-					'distance': this.distance,
+          'distance': this.distance,
+          'outdoor': this.outdoor,
 					'notes': this.notes
 				}
 			})
