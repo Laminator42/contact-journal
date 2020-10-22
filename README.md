@@ -9,6 +9,7 @@ You can use the web interface by cloning this repository. Install quasar globall
 ```
 npm install -g @quasar/cli
 cd /path/to/app/
+npm install
 quasar dev
 ```
 a browser window will oppen and you can use the web interface.
