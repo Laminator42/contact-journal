@@ -2,17 +2,15 @@
   <div>
     <q-page>
       <div class="q-pa-md">
-        <q-list bordered separator>
+        <!-- <q-list bordered separator> -->
           <contact
-            clickable
-            v-ripple
             v-for="(contact, contactKey) in contacts" 
             :key="contactKey"
             :contact="contact"
             :id="contactKey"
             >
           </contact>
-        </q-list>
+        <!-- </q-list> -->
       </div>
     </q-page>
 

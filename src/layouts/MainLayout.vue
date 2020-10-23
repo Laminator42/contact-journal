@@ -10,7 +10,7 @@
       <div class="q-mb-md absolute-bottom text-center">
         <q-btn
           round
-          color="secondary"
+          color="primary"
           size="15px"
           icon="add"
           @click="showAddContact = true"
