@@ -15,6 +15,7 @@
           icon="add"
           @click="showAddContact = true"
         />
+        <q-toolbar></q-toolbar>
       </div>
     </q-footer>
 

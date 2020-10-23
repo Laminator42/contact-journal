@@ -4,7 +4,8 @@ import { LocalStorage } from "quasar";
 const state = {
   // basically 'db' of states
   currentId: 10,
-  contacts: {}
+  contacts: {},
+  sort: 'date'
 };
 
 const mutations = {
@@ -46,7 +47,6 @@ const actions = {
   },
   getContactState({ commit }) {
     let contactState = LocalStorage.getItem("contactState");
-    console.log(contactState)
     if (contactState) {
       commit("setContacts", contactState.contacts);
       commit("setId", contactState.currentId);
@@ -55,8 +55,29 @@ const actions = {
 };
 
 const getters = {
-  contacts: state => {
-    return state.contacts;
+  contacts: (state, getters) => {
+    // TODO: make this toggeable
+    return getters.contactsOrdered;
+  },
+  contactsOrdered: state => {
+    let contactsOrdered = {},
+      keysOrdered = Object.keys(state.contacts);
+
+    // sort descending
+    keysOrdered.sort((a, b) => {
+      let aDate = state.contacts[a][state.sort],
+        bDate = state.contacts[b][state.sort];
+      if ((aDate > bDate) || !aDate || !bDate) return -1;
+      else if (aDate < bDate) return 1;
+      else return 0;
+    });
+
+    keysOrdered.forEach(key => {
+      contactsOrdered[key] = state.contacts[key];
+      console.log(key)
+    });
+
+    return contactsOrdered;
   },
   currentId: state => {
     return state.currentId;
